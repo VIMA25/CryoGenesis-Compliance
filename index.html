@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryoGenesis: Master Regulatory Document Checklist</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        // FIX: Wrapped configuration in a safety check to prevent "tailwind is not defined" errors
+        // in environments where external scripts load asynchronously or fail to load.
+        if (typeof tailwind !== 'undefined') {
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            cryo: {
+                                navy: '#002060',  /* Deep Navy */
+                                teal: '#009B9F',  /* Teal/Cyan */
+                                light: '#F3F4F6',
+                                white: '#FFFFFF'
+                            }
+                        },
+                        fontFamily: { sans: ['Roboto', 'sans-serif'] }
+                    }
+                }
+            }
+        } else {
+            console.warn("Tailwind CSS failed to load or is not yet defined.");
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'Roboto', sans-serif; background-color: #F8FAFC; color: #1E293B; }
+        
+        /* Chart Container - Responsive Constraint */
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            height: 350px; 
+            max-height: 400px;
+        }
+
+        /* Document Card Styles */
+        .doc-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #009B9F;
+        }
+        .doc-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-left-width: 8px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER -->
+    <header class="bg-cryo-navy text-white pt-10 pb-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <!-- Logo Logic - UPDATED for new image -->
+                <div class="mb-4 md:mb-0 bg-white/10 p-2 rounded">
+                    <img src="unnamed.png" alt="CryoGenesis" class="h-20 w-auto object-contain" 
+                         onerror="this.parentNode.innerHTML='<div class=\'text-white font-bold px-4 py-2\'>CryoGenesis <span class=\'text-cryo-teal\'>Bank</span></div><div class=\'text-xs text-gray-400 text-center\'>[unnamed.png missing]</div>'">
+                </div>
+                <div class="text-right">
+                    <p class="text-cryo-teal font-bold uppercase tracking-wider text-sm">Operational Protocol</p>
+                    <p class="text-white text-lg">VA & FDA 21 CFR 1271</p>
+                </div>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
+                Master Document Checklist<br><span class="text-cryo-teal">Regulations & Waivers for a Cryobank Setup</span>
+            </h1>
+            <p class="text-gray-300 max-w-3xl text-lg">
+                A visual breakdown of every mandatory signature required to manage liability, compliance, and waivers for Egg, Sperm, and Embryo biobanking.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 -mt-16 relative z-20 pb-20">
+
+        <!-- VISUALIZATION 1: DOCUMENT RISK WEIGHTING (CHART) -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- Intro Text -->
+            <div class="col-span-1 bg-white p-6 rounded-xl shadow-md border-t-4 border-cryo-teal">
+                <h3 class="text-xl font-bold text-cryo-navy mb-4">Why This Matters</h3>
+                <p class="text-gray-600 text-sm mb-4">
+                    In the eyes of the FDA and Virginia Courts, <strong>if it isn't documented, it didn't happen.</strong>
+                </p>
+                <p class="text-gray-600 text-sm">
+                    The chart to the right illustrates the "Weight" of each document packet. While the <strong>Waiver Packet</strong> contains fewer pages, it carries the highest regulatory risk profile.
+                </p>
+            </div>
+            
+            <!-- Chart Container -->
+            <div class="col-span-1 md:col-span-2 bg-white p-6 rounded-xl shadow-md">
+                <div class="chart-container">
+                    <canvas id="riskChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PACKET 1: THE WAIVER (URGENT MEDICAL NEED) -->
+        <!-- This is the most critical section for the user -->
+        <section class="mb-16">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-red-600 text-white px-3 py-1 rounded text-sm font-bold uppercase tracking-wide">High Priority</div>
+                <h2 class="text-2xl font-bold text-cryo-navy">Packet A: The "Waiver" (Urgent Medical Need)</h2>
+            </div>
+            <p class="text-gray-600 mb-6 max-w-4xl">
+                <strong>TRIGGER CONDITION:</strong> Used ONLY for Directed Donors who fail screening/testing but are medically necessary for the Recipient.
+            </p>
+
+            <div class="bg-white rounded-xl shadow-xl overflow-hidden border border-red-100">
+                <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+                    
+                    <!-- Doc 1 -->
+                    <div class="p-6 hover:bg-red-50 transition-colors">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-cryo-navy">1. Physician Certification</h3>
+                            <span class="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">Sign: MD Only</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">The "Golden Ticket." The treating physician must certify that withholding this tissue would cause serious morbidity (infertility).</p>
+                        <p class="text-xs text-red-600 font-mono">Ref: 21 CFR 1271.65(b)(iii)</p>
+                    </div>
+
+                    <!-- Doc 2 -->
+                    <div class="p-6 hover:bg-red-50 transition-colors border-l-4 border-red-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-cryo-navy">2. Recipient Informed Consent</h3>
+                            <span class="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">Sign: Recipient</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">The "Release." Recipient acknowledges specific failure (e.g., "Donor is Chlamydia Positive") and accepts all risks.</p>
+                        <p class="text-xs text-red-600 font-mono">Mandatory Specificity</p>
+                    </div>
+
+                    <!-- Doc 3 -->
+                    <div class="p-6 hover:bg-red-50 transition-colors">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-cryo-navy">3. Labeling Variance</h3>
+                            <span class="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">Action: Lab Staff</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">Physical Vials MUST be tagged: <br><strong>"BIOHAZARD"</strong> and <strong>"Advise Recipient of Risk"</strong>.</p>
+                        <p class="text-xs text-red-600 font-mono">Ref: 1271.65(b)(2)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PACKET 2: THE DONOR (INPUT) -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-cryo-navy mb-6">Packet B: The Donor (Standard Intake)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md doc-card">
+                    <h3 class="font-bold text-lg text-cryo-teal mb-2">4. VA Rights Relinquishment</h3>
+                    <p class="text-sm text-gray-600 mb-3">
+                        <strong>Critical for Virginia:</strong> Legally severs parental rights. References <em>VA Code § 20-156</em>. 
+                    </p>
+                    <div class="bg-gray-100 p-2 rounded text-xs text-gray-700">
+                        <strong>Note:</strong> If Donor is married, Spouse MUST also sign.
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md doc-card">
+                    <h3 class="font-bold text-lg text-cryo-teal mb-2">5. FDA Risk Questionnaire</h3>
+                    <p class="text-sm text-gray-600 mb-3">
+                        The "History Interview." A sworn affidavit covering sexual history, travel, and lifestyle risks.
+                    </p>
+                    <div class="bg-gray-100 p-2 rounded text-xs text-gray-700">
+                        <strong>Fraud Alert:</strong> Lying on this document is a federal crime.
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md doc-card">
+                    <h3 class="font-bold text-lg text-cryo-teal mb-2">6. Infectious Disease Consent</h3>
+                    <p class="text-sm text-gray-600">
+                        Permission to draw blood/urine for HIV, Hep B/C, Syphilis, GC/Chlamydia, HTLV, CMV, West Nile.
+                    </p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md doc-card">
+                    <h3 class="font-bold text-lg text-cryo-teal mb-2">7. Genetic Carrier Consent</h3>
+                    <p class="text-sm text-gray-600">
+                        Consent to run genetic panels (Cystic Fibrosis, SMA, etc.) and share results with recipients.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- VISUALIZATION 2: THE PAPER TRAIL TIMELINE (CHART) -->
+        <section class="bg-white p-8 rounded-xl shadow-lg mb-16 border-t-8 border-cryo-navy">
+            <div class="flex justify-between items-end mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-cryo-navy">Operational Timeline</h2>
+                    <p class="text-sm text-gray-500">When must these documents be executed?</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="timelineChart"></canvas>
+            </div>
+        </section>
+
+
+        <!-- PACKET 3: THE RECIPIENT (OUTPUT) -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-cryo-navy mb-6">Packet C: The Recipient (Output)</h2>
+            <div class="bg-gray-50 rounded-xl p-8 border border-gray-200">
+                <ol class="relative border-l border-cryo-teal">                  
+                    <li class="mb-10 ml-6">
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-cryo-teal rounded-full -left-4 ring-8 ring-white text-white font-bold">8</span>
+                        <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900">Informed Consent for 3rd Party Reproduction</h3>
+                        <p class="mb-4 text-base font-normal text-gray-500">The "Base" contract. Acknowledges general risks of using donor gametes. Limits bank liability for outcome.</p>
+                    </li>
+                    <li class="mb-10 ml-6">
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-cryo-navy rounded-full -left-4 ring-8 ring-white text-white font-bold">9</span>
+                        <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900">Genetic Risk Acknowledgement</h3>
+                        <p class="mb-4 text-base font-normal text-gray-500">Specifically releases bank from liability if child has a genetic defect. Puts onus of "Carrier Matching" on the Physician/Patient.</p>
+                    </li>
+                    <li class="ml-6">
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-gray-600 rounded-full -left-4 ring-8 ring-white text-white font-bold">10</span>
+                        <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900">Cryopreservation Agreement</h3>
+                        <p class="text-base font-normal text-gray-500">Crucial for Embryos. Dictates disposition (discard, donate to science, donate to other) in case of death/divorce/non-payment.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- PACKET 4: SHIPPING (SUMMARY) -->
+        <section class="bg-cryo-navy text-white rounded-xl shadow-lg p-8">
+            <div class="flex flex-col md:flex-row items-center gap-6">
+                <div class="md:w-3/4">
+                    <h2 class="text-2xl font-bold text-white mb-2">Packet D: Summary of Records (1271.55)</h2>
+                    <p class="text-gray-300">
+                        This is the "Receipt." It is not signed by the patient, but acts as the cover sheet for the shipment. It summarizes the entire audit trail.
+                    </p>
+                </div>
+                <div class="md:w-1/4 bg-white/10 p-4 rounded border border-white/20 text-center">
+                    <p class="text-xs uppercase tracking-widest text-cryo-teal font-bold mb-2">Status Output</p>
+                    <div class="bg-green-500 text-white font-bold py-1 px-3 rounded text-sm mb-2">ELIGIBLE</div>
+                    <div class="text-xs text-gray-300">OR</div>
+                    <div class="bg-red-500 text-white font-bold py-1 px-3 rounded text-sm mt-2">URGENT NEED</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center py-10">
+        <p class="text-sm opacity-60">Generated for CryoGenesis Strategic Analysis</p>
+        <p class="text-xs opacity-40 mt-2">Compliance Note: Always consult legal counsel for final contract language.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- UTILITY: Label Wrapping ---
+        function wrapLabels(label, maxLen = 16) {
+            if (label.length <= maxLen) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= maxLen) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // --- TOOLTIP CONFIG ---
+        const commonTooltipOptions = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        // --- CHART 1: RISK WEIGHTING (Doughnut) ---
+        const ctxRisk = document.getElementById('riskChart').getContext('2d');
+        new Chart(ctxRisk, {
+            type: 'doughnut',
+            data: {
+                labels: wrapLabels('Waiver_Packet(High_Risk) Donor_Packet(Med_Risk) Recipient_Packet(Liability) Shipping_Summary(Audit)'),
+                datasets: [{
+                    data: [50, 30, 15, 5], // Qualitative Risk Weight
+                    backgroundColor: ['#DC2626', '#002060', '#009B9F', '#9CA3AF'],
+                    borderWidth: 0,
+                    hoverOffset: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right' },
+                    title: { display: true, text: 'Regulatory Risk Distribution by Packet' },
+                    tooltip: commonTooltipOptions
+                }
+            }
+        });
+
+        // --- CHART 2: TIMELINE (Horizontal Bar as Gantt) ---
+        const ctxTimeline = document.getElementById('timelineChart').getContext('2d');
+        new Chart(ctxTimeline, {
+            type: 'bar',
+            data: {
+                labels: ['Donor Rights Relinquishment', 'FDA Risk Questionnaire', 'Infectious Disease Consent', 'Genetic Consent', 'Recipient Informed Consent', 'Waiver (Urgent Need)', 'Summary of Records'],
+                datasets: [{
+                    label: 'Day relative to Collection (Day 0)',
+                    data: [-10, -1, 0, 0, 10, 15, 180], // Approximate timing
+                    backgroundColor: function(context) {
+                        const val = context.raw;
+                        if (val < 0) return '#009B9F'; // Pre-collection
+                        if (val === 0) return '#002060'; // Collection Day
+                        if (val > 0 && val < 100) return '#F59E0B'; // Post-Processing
+                        return '#10B981'; // Release
+                    },
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { title: { display: true, text: 'Timeline (Days)' } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: commonTooltipOptions,
+                    title: { display: true, text: 'Document Execution Timeline' }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
